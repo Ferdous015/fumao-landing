@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FuMao Bangladesh Technology Co., Ltd. | Sustainable Non-Woven Bags</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-dark: #003622;
+      --medium-green: #00452C;
+      --light-green: #a1cf31;
+      --pale-green: #f2f9ed;
+      --dark-bark: #002215;
+      --paper: #f9fbf8;
+      --white: #ffffff;
+      --text-dark: #0d1410;
+      --text-muted: #4e5a52;
+      --border: #e2ebe4;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--paper);
+      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--dark-bark);
+    }
+    a { text-decoration: none; color: inherit; }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Button and UI components */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--medium-green); color: var(--paper); }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 1px solid var(--light-green); color: var(--light-green); }
+    .btn-outline:hover { background: rgba(168, 208, 141, 0.1); transform: translateY(-2px); }
+
+    /* Header & Navigation */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(248, 250, 246, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    header.scrolled { height: 70px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      transition: var(--transition);
+    }
+    header.scrolled .nav-container { height: 70px; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-text h2 { font-size: 1.4rem; letter-spacing: -0.02em; }
+    .logo-text p { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; color: var(--medium-green); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); transition: var(--transition); }
+    .nav-links a:hover { color: var(--medium-green); }
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; }
+    /* Mobile Overlay Menu */
+    .mobile-nav {
+      position: fixed;
+      top: 80px; left: 0; right: 0; bottom: 0;
+      background: var(--paper);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      gap: 1.5rem;
+      z-index: 999;
+      transform: translateY(-110%);
+      transition: var(--transition);
+      opacity: 0;
+      pointer-events: none;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-nav.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .mobile-nav a { font-size: 1.2rem; font-weight: 500; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+
+    /* Hero */
+    .hero {
+      background: var(--dark-bark);
+      color: var(--paper);
+      padding: 160px 0 100px;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(45, 138, 38, 0.15);
+      border: 1px solid rgba(168, 208, 141, 0.3);
+      color: var(--light-green);
+      padding: 0.4rem 0.8rem;
+      border-radius: 99px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 4.5vw, 4rem);
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span { font-style: italic; color: var(--light-green); }
+    .hero p.tagline {
+      font-size: 1.15rem;
+      color: rgba(248, 250, 246, 0.8);
+      margin-bottom: 2.5rem;
+      max-width: 580px;
+    }
+    .hero-btns { display: flex; gap: 1rem; }
+
+    /* Stat Card / Dashboard Grid */
+    .stat-dashboard {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+    .stat-card { display: flex; flex-direction: column; justify-content: center; }
+    .stat-number { font-family: 'DM Serif Display', serif; font-size: 2.6rem; color: var(--light-green); margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(248,250,246,0.6); }
+    .iso-stamp {
+      grid-column: span 2;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .iso-badge {
+      background: var(--light-green);
+      color: var(--dark-bark);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+    }
+
+    /* About Section */
+    .about { padding: 100px 0; }
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4.5rem; }
+    .section-tag { font-size: 0.8rem; font-weight: 700; color: var(--medium-green); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+    .section-title { font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 1.5rem; }
+    .about-desc { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem; }
+    .quote-block {
+      background: var(--pale-green);
+      border-left: 4px solid var(--primary-dark);
+      padding: 2rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin-top: 2rem;
+    }
+    .quote-text { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--dark-bark); font-style: italic; margin-bottom: 1rem; }
+    .quote-meta { font-size: 0.85rem; font-weight: 600; color: var(--primary-dark); }
+    .pillar-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+    .pillar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      transition: var(--transition);
+    }
+    .pillar-card:hover { transform: translateX(6px); border-color: var(--light-green); box-shadow: 0 10px 20px rgba(0,0,0,0.02); }
+    .pillar-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .pillar-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* Products Section */
+    .products { background: var(--pale-green); padding: 100px 0; }
+    .text-center { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: var(--transition);
+    }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(45, 138, 38, 0.05); border-color: var(--medium-green); }
+    .prod-badge {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      background: var(--pale-green);
+      border: 1px solid rgba(0, 54, 34, 0.15);
+      color: var(--primary-dark);
+      font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 99px;
+      z-index: 10;
+    }
+    .prod-image-wrapper {
+      width: 100%;
+      height: 190px;
+      background: #fdfefe;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0, 54, 34, 0.06);
+      position: relative;
+    }
+    .prod-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .product-card:hover .prod-img {
+      transform: scale(1.06);
+    }
+    .product-card h3 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+    .slide-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 54, 34, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+      z-index: 12;
+      transition: var(--transition);
+    }
+    .slide-nav-btn:hover {
+      background: var(--light-green);
+      color: var(--primary-dark);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .prev-btn { left: 8px; }
+    .next-btn { right: 8px; }
+    .slide-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 12;
+    }
+    .slide-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--white);
+      opacity: 0.5;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .slide-dot.active-dot {
+      opacity: 1;
+      background: var(--light-green);
+      transform: scale(1.2);
+    }
+    .product-card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+
+    /* Process Timeline */
+    .process { padding: 100px 0; background: var(--paper); }
+    .timeline-container { position: relative; width: 100%; overflow-x: auto; padding: 2rem 0; scrollbar-width: none; }
+    .timeline-container::-webkit-scrollbar { display: none; }
+    .process-timeline { display: flex; gap: 2rem; width: max-content; padding-right: 2rem; }
+    .process-step { width: 240px; text-align: center; position: relative; z-index: 2; }
+    .step-num { font-size: 0.8rem; font-weight: 700; color: var(--medium-green); letter-spacing: 0.1em; background: var(--pale-green); padding: 0.25rem 0.6rem; border-radius: 99px; display: inline-block; margin-bottom: 1rem; }
+    .step-bubble { width: 70px; height: 70px; border-radius: 50%; background: var(--white); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.5rem; transition: var(--transition); }
+    .process-step:hover .step-bubble { border-color: var(--medium-green); background: var(--pale-green); transform: scale(1.1); }
+    .process-step h4 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+    .process-step p { font-size: 0.85rem; color: var(--text-muted); padding: 0 0.5rem; }
+    .timeline-line { position: absolute; top: calc(2rem + 63px); left: 120px; right: 120px; height: 2px; border-top: 2px dashed var(--light-green); z-index: 1; pointer-events: none; }
+
+    /* Why Us */
+    .why-us { padding: 100px 0; background: var(--white); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+    .why-card { display: flex; gap: 1.25rem; padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border); transition: var(--transition); }
+    .why-card:hover { transform: translateY(-4px); border-color: var(--medium-green); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+    .why-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .why-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* Certifications */
+    .certifications { padding: 100px 0; background: var(--pale-green); position: relative; overflow: hidden; }
+    .cert-container { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 4rem; align-items: center; }
+    @media (max-width: 991px) {
+      .cert-container { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+      .cert-badge-wrapper { margin: 0 auto; }
+    }
+    .cert-content { display: flex; flex-direction: column; gap: 1.5rem; }
+    .cert-content h3 { font-size: 2.2rem; color: var(--dark-bark); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    @media (max-width: 991px) {
+      .cert-content h3 { justify-content: center; }
+    }
+    .cert-content p { font-size: 1.08rem; color: var(--text-muted); line-height: 1.75; }
+    .cert-badge-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .cert-badge-shadow {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .cert-badge-svg {
+      z-index: 2;
+      filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.12));
+      transition: var(--transition);
+    }
+    .cert-badge-svg:hover {
+      transform: scale(1.06) rotate(3deg);
+    }
+
+    /* Machinery & Technology */
+    .machinery { padding: 100px 0; background: var(--paper); }
+    .machinery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    @media (max-width: 991px) {
+      .machinery-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    .machinery-list { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem 1.5rem; }
+    .machinery-item { display: flex; align-items: center; gap: 0.75rem; font-size: 1.02rem; color: var(--text-muted); font-weight: 500; }
+    .machinery-item::before { content: "✓"; color: #007A48; font-weight: bold; font-size: 1.2rem; line-height: 1; }
+    .machinery-images { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 575px) {
+      .machinery-images { grid-template-columns: 1fr; }
+    }
+    .machinery-img-wrapper { position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: var(--transition); background: var(--white); display: flex; flex-direction: column; }
+    .machinery-img-wrapper:hover { transform: translateY(-4px); border-color: var(--medium-green); box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+    .machinery-img { width: 100%; height: 210px; display: block; object-fit: cover; transition: var(--transition); }
+    .machinery-img-wrapper:hover .machinery-img { transform: scale(1.03); }
+    .machinery-img-caption { padding: 1.25rem; background: var(--white); border-top: 1px solid var(--border); flex-grow: 1; }
+    .machinery-img-caption h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--dark-bark); }
+    .machinery-img-caption p { font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.4; }
+
+    /* Export Markets */
+    .export { background: var(--dark-bark); color: var(--paper); padding: 100px 0; }
+    .export h2, .export h3 { color: var(--white); }
+    .export p { color: rgba(248, 250, 246, 0.7); }
+    .countries-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3.5rem; }
+    .flag-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; transition: var(--transition); }
+    .flag-card:hover { background: rgba(255, 255, 255, 0.06); border-color: var(--light-green); transform: translateY(-3px); }
+    .flag-icon { font-size: 2rem; }
+    .flag-card span { font-weight: 500; font-size: 1.1rem; color: var(--white); }
+    .customer-types { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 3.5rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2.5rem; }
+    .cust-chip { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); padding: 0.5rem 1.25rem; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; color: var(--white); }
+
+    /* Contact + AI Chatbot */
+    .contact-chatbot { padding: 120px 0; background: var(--paper); }
+    .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.75rem; }
+    .info-item { display: flex; gap: 1rem; }
+    .info-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--pale-green); display: flex; align-items: center; justify-content: center; color: var(--medium-green); font-weight: 700; flex-shrink: 0; }
+    .info-content h4 { font-size: 1rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.25rem; }
+    .info-content p, .info-content a { font-size: 0.95rem; color: var(--text-muted); }
+    .info-content a:hover { color: var(--medium-green); }
+
+    /* Chatbot Widget Styles (Dark theme) */
+    .chat-widget {
+      background: var(--dark-bark);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    .chat-header {
+      background: rgba(45, 138, 38, 0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .pulse-dot { width: 10px; height: 10px; background-color: var(--light-green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(168, 208, 141, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(168, 208, 141, 0); } 100% { box-shadow: 0 0 0 0 rgba(168, 208, 141, 0); } }
+    .chat-header h3 { color: var(--white); font-size: 1.2rem; }
+    .chat-header p { font-size: 0.75rem; color: rgba(248, 250, 246, 0.6); }
+
+    .api-overlay {
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: var(--dark-bark);
+      position: absolute;
+      top: 65px; left: 0; right: 0; bottom: 0;
+      z-index: 10;
+      transition: var(--transition);
+    }
+    .api-overlay.hidden { opacity: 0; pointer-events: none; transform: scale(0.95); }
+    .api-overlay p { color: rgba(248, 250, 246, 0.85); font-size: 0.95rem; margin-bottom: 1.5rem; max-width: 300px; }
+    .api-input-container { width: 100%; display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .api-input { flex-grow: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); padding: 0.75rem 1rem; border-radius: var(--radius-sm); color: var(--white); font-size: 0.9rem; outline: none; }
+    .api-input::placeholder { color: rgba(248,250,246,0.4); }
+    .api-input:focus { border-color: var(--light-green); }
+    .api-tips { font-size: 0.7rem; color: rgba(248,250,246,0.5); }
+
+    .chat-body {
+      height: 320px;
+      padding: 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #141f12;
+    }
+    .chat-body::-webkit-scrollbar { width: 6px; }
+    .chat-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+    .chat-bubble { max-width: 85%; padding: 0.85rem 1.1rem; border-radius: var(--radius-md); font-size: 0.9rem; line-height: 1.4; word-wrap: break-word; }
+    .chat-bubble.bot { background: rgba(255,255,255,0.06); color: rgba(248,250,246,0.95); border-radius: 0 var(--radius-md) var(--radius-md) var(--radius-md); align-self: flex-start; }
+    .chat-bubble.user { background: var(--medium-green); color: var(--white); border-radius: var(--radius-md) 0 var(--radius-md) var(--radius-md); align-self: flex-end; }
+    .chat-bubble.error { background: rgba(181, 40, 40, 0.2); border: 1px solid rgba(181, 40, 40, 0.4); color: #ffbcbc; align-self: center; text-align: center; }
+
+    /* Typing indicator */
+    .typing-indicator { display: none; align-items: center; gap: 4px; padding: 0.85rem 1.1rem; background: rgba(255,255,255,0.04); border-radius: 0 var(--radius-md) var(--radius-md) var(--radius-md); width: max-content; align-self: flex-start; }
+    .typing-dot { width: 6px; height: 6px; background: var(--light-green); border-radius: 50%; opacity: 0.4; animation: blink 1.4s infinite -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    .typing-dot:nth-child(3) { animation-delay: 0s; }
+    @keyframes blink { 0%, 80%, 100% { opacity: 0.4; transform: scale(1); } 40% { opacity: 1; transform: scale(1.2); } }
+
+    .chat-input-row {
+      display: flex;
+      padding: 1rem;
+      background: var(--dark-bark);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      gap: 0.5rem;
+    }
+    .chat-input { flex-grow: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); outline: none; border-radius: var(--radius-sm); padding: 0.75rem 1rem; color: var(--white); font-size: 0.9rem; }
+    .chat-input::placeholder { color: rgba(248, 250, 246, 0.4); }
+    .chat-input:focus { border-color: var(--medium-green); }
+
+    /* Footer */
+    footer { background: var(--dark-bark); color: rgba(248, 250, 246, 0.5); padding: 4rem 0 2rem; border-top: 1px solid rgba(255,255,255,0.08); }
+    .footer-content { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2rem; }
+    .footer-copyright { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; width: 100%; text-align: center; font-size: 0.85rem; }
+
+    /* Shake Animation */
+    .shake { animation: shake 0.4s ease-in-out; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    /* Responsiveness */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .timeline-line { display: none; }
+      .process-timeline { flex-direction: column; width: 100%; padding-right: 0; }
+      .process-step { width: 100%; display: flex; text-align: left; gap: 1.5rem; align-items: flex-start; }
+      .step-bubble { margin: 0; flex-shrink: 0; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-btns { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FIXED NAVBAR -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <svg width="44" height="44" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));">
+          <!-- Left Face: Dark Forest Green (#00452C) with handle cutout -->
+          <path d="M 24 50
+                   C 24 47 26 46 29 47
+                   L 74 73
+                   C 76 74 77 76 77 78
+                   L 77 131
+                   C 77 134 75 136 72 135
+                   L 64 131
+                   L 64 96
+                   C 64 84 43 84 43 96
+                   L 43 120
+                   L 29 112
+                   C 26 110 24 107 24 104
+                   Z" 
+                fill="#00452C" />
+
+          <!-- Right/Top Panels: Beautiful Lime Green stripes folding over the ridge -->
+          <!-- Stripe 1 (Middle-left) -->
+          <path d="M 46 32
+                   L 84 54
+                   L 84 116
+                   C 84 119 86 120 88 119
+                   L 97 114
+                   C 99 113 100 111 100 109
+                   L 100 45
+                   L 62 23
+                   C 60 22 57 23 56 25
+                   L 47 30
+                   C 45 31 45 32 46 32 Z"
+                fill="#a1cf31" />
+
+          <!-- Stripe 2 (Middle-right) -->
+          <path d="M 66 21
+                   L 104 43
+                   L 104 105
+                   C 104 108 106 109 108 108
+                   L 117 103
+                   C 119 102 120 100 120 98
+                   L 120 34
+                   L 82 12
+                   C 80 11 77 12 76 14
+                   L 67 19
+                   C 65 20 65 21 66 21 Z"
+                fill="#a1cf31" />
+
+          <!-- Stripe 3 (Far-right) -->
+          <path d="M 86 9
+                   L 124 31
+                   L 124 93
+                   C 124 96 126 97 128 96
+                   L 134 93
+                   C 136 92 137 89 137 87
+                   L 137 22
+                   C 140 19 138 15 135 14
+                   L 102 1
+                   C 99 -1 96 0 95 2
+                   L 87 7
+                   C 85 8 85 9 86 9 Z"
+                fill="#a1cf31" />
+        </svg>
+        <div class="logo-text">
+          <h2 style="font-family: 'DM Serif Display', serif; color: #00452C;">FuMao</h2>
+          <p style="color: #00452C; opacity: 0.85;">BANGLADESH TECHNOLOGY CO., LTD.</p>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#machinery">Machinery</a></li>
+        <li><a href="#why-us">Why Choose Us</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#export">Export</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a href="#contact" class="btn btn-primary" style="padding: 0.6rem 1.25rem;">Get a Quote</a>
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#about" class="mobile-link">About Us</a>
+    <a href="#products" class="mobile-link">Product Lines</a>
+    <a href="#process" class="mobile-link">Manufacturing Process</a>
+    <a href="#machinery" class="mobile-link">Machinery & Technology</a>
+    <a href="#why-us" class="mobile-link">Why Choose FuMao</a>
+    <a href="#certifications" class="mobile-link">Certifications</a>
+    <a href="#export" class="mobile-link">Export Markets</a>
+    <a href="#contact" class="mobile-link">Contact Information & Advisor</a>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <span class="hero-badge">🌱 LEADING GREEN PACKAGING MANUFACTURER</span>
+        <h1>It starts with a single bag.<br>Let the <span>green revolution</span> begin.</h1>
+        <p class="tagline">FuMao Bangladesh Technology Co., Ltd. is Dhaka's premier producer of reusable, high-capacity, and biodegradable non-woven bags assisting global industries transition towards a waste-free blueprint.</p>
+        <div class="hero-btns">
+          <a href="#products" class="btn btn-primary">Explore Products</a>
+          <a href="#process" class="btn btn-outline">Our Process</a>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay: 150ms;">
+        <div class="stat-dashboard">
+          <div class="stat-card">
+            <span class="stat-number">6,000+</span>
+            <span class="stat-label">Daily Capacity (Bags)</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">15,000</span>
+            <span class="stat-label">Factory Area (Sq Ft)</span>
+          </div>
+          <div class="stat-card" style="grid-column: span 2; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem;">
+            <span class="stat-number" style="font-size: 2.2rem;">50+ Experts</span>
+            <span class="stat-label">Chinese & Bangladeshi Workforce</span>
+          </div>
+          <div class="iso-stamp">
+            <span class="iso-badge">ISO 9001</span>
+            <span class="stat-label" style="color: var(--paper); font-weight: 500;">Accredited Quality Excellence System</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="reveal">
+        <span class="section-tag">Corporate Profile</span>
+        <h2 class="section-title">Leading Eco-Conscious Packaging Technology</h2>
+        <p class="about-desc">FuMao Bangladesh Technology Co., Ltd. is an ISO 9001 certified non-woven bag manufacturer situated in Ashulia, Savar, Dhaka. Merging modern Chinese polymer engineering with a dedicated workforce, we formulate elegant, sustainable, and heavy-duty alternatives to plastic bags.</p>
+        <p class="about-desc">Our 15,000 sq ft production powerhouse excels in private-label OEM, multi-color branding layouts, and versatile shape specifications, ensuring standard-setting reliability for retail brands and supermarkets across the map.</p>
+        
+        <div class="quote-block">
+          <p class="quote-text">"With our modern facility and skilled local team, we do not just manufacture bags — we provide the high-performance vehicle for global sustainability. It starts with a single bag. Let the green revolution begin."</p>
+          <p class="quote-meta">Tang Liren, Chairman <span style="font-weight: normal; color: var(--text-muted);">| Co-Led by Md. Shoaibur Rahman, Managing Director</span></p>
+        </div>
+      </div>
+      <div class="pillar-stack reveal" style="transition-delay: 150ms;">
+        <div class="pillar-card">
+          <h3>🏭 Modern 15K Sq Ft Footprint</h3>
+          <p>Situated in the key industrial corridor of Yearpur, Savar, our factory operates advanced automated lines for optimized yield and standard-setting throughput cycles.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>🌍 Global Export Quality</h3>
+          <p>Each batch undergoes high-precision tests for tensile strength, molecular seam stability, and high-fidelity print alignment to clear strict Western import specifications.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>🎨 Complete Custom Customization</h3>
+          <p>From custom density specifications (GSM selection) to bespoke shapes, sizes, colors and precision custom brand prints tailored directly to grocery/apparel retail networks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS SECTION -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">Our Collection</span>
+        <h2 class="section-title">Sustainable Bags Engineered for Every Vertical</h2>
+        <p style="color: var(--text-muted);">We utilize premium, recyclable, non-toxic polypropylene fabric processing to craft specialized products prioritizing strength, load density, and visual branding fidelity.</p>
+      </div>
+
+      <div class="product-grid">
+        <!-- Card 1 -->
+        <div class="product-card reveal">
+          <span class="prod-badge">Bestseller</span>
+          <div class="prod-image-wrapper">
+            <img src="https://github.com/Ferdous015/fumao-images/blob/main/Non-woven%20shopping%20bags.png?raw=true" alt="Colorful Reusable Non-Woven Shopping Bags" class="prod-img" referrerPolicy="no-referrer" />
+          </div>
+          <h3>Non-Woven Shopping Bags</h3>
+          <p>High-tensile, universal checkout handles optimized for extensive reuse. The essential green vehicle for local or global supermarkets.</p>
+          <a href="#contact" class="btn btn-outline" style="border-color: var(--medium-green); color: var(--primary-dark);">Inquire Bulk</a>
+        </div>
+        <!-- Card 2 -->
+        <div class="product-card reveal" style="transition-delay: 100ms;">
+          <span class="prod-badge">Popular</span>
+          <div class="prod-image-wrapper">
+            <img src="https://github.com/Ferdous015/fumao-images/blob/main/Gemini_Generated_Image_cr8gnccr8gnccr8g.png?raw=true" alt="D-Cut Bags" class="prod-img" referrerPolicy="no-referrer" />
+          </div>
+          <h3>D-Cut Non-Woven Bags</h3>
+          <p>A minimalist profile with a clean punched hand-held oval. Folds completely flat for optimized shipping storage inside showrooms.</p>
+          <a href="#contact" class="btn btn-outline" style="border-color: var(--medium-green); color: var(--primary-dark);">Inquire Bulk</a>
+        </div>
+        <!-- Card 3 -->
+        <div class="product-card reveal" style="transition-delay: 200ms;">
+          <span class="prod-badge">Classic</span>
+          <div class="prod-image-wrapper">
+            <img src="https://github.com/Ferdous015/fumao-images/blob/main/WCut.png?raw=true" alt="W-Cut Non-Woven Bags" class="prod-img" referrerPolicy="no-referrer" />
+          </div>
+          <h3>W-Cut Non-Woven Bags</h3>
+          <p>Standard grocery / vest singlet structures featuring expandible side gussets. Highly durable eco-friendly substitute for light plastic shopping alternatives.</p>
+          <a href="#contact" class="btn btn-outline" style="border-color: var(--medium-green); color: var(--primary-dark);">Inquire Bulk</a>
+        </div>
+        <!-- Card 4 -->
+        <div class="product-card reveal">
+          <span class="prod-badge">Premium</span>
+          <div class="prod-image-wrapper">
+            <img src="https://github.com/Ferdous015/fumao-images/blob/main/11111.png?raw=true" alt="Box Bags" class="prod-img" referrerPolicy="no-referrer" />
+          </div>
+          <h3>Box Bags</h3>
+          <p>Highly rigid 3D structures featuring reinforced heat-sealed bottom panels. Self-standing shape presents a prominent banner layout for top luxury labels.</p>
+          <a href="#contact" class="btn btn-outline" style="border-color: var(--medium-green); color: var(--primary-dark);">Inquire Bulk</a>
+        </div>
+        <!-- Card 5 -->
+        <div class="product-card reveal" style="transition-delay: 100ms;">
+          <span class="prod-badge">Elite</span>
+          <div class="prod-image-wrapper">
+            <img src="https://github.com/Ferdous015/fumao-images/blob/main/Loop.png?raw=true" alt="Loop Handle Bags" class="prod-img" referrerPolicy="no-referrer" />
+          </div>
+          <h3>Loop Handle Bags</h3>
+          <p>Elegant loops fused via high-frequency molecular bonding. Merges comfort and reliable vertical load capabilities for high-end retail apparel.</p>
+          <a href="#contact" class="btn btn-outline" style="border-color: var(--medium-green); color: var(--primary-dark);">Inquire Bulk</a>
+        </div>
+        <!-- Card 6 -->
+        <div class="product-card reveal" style="transition-delay: 200ms;">
+          <span class="prod-badge">OEM/ODM</span>
+          <div class="prod-image-wrapper" id="custom-slider-container" style="position: relative;">
+            <img src="https://github.com/Ferdous015/fumao-images/blob/main/as.png?raw=true" alt="Customized Bags Model A" class="prod-img custom-slide active" referrerPolicy="no-referrer" style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; transition: opacity 0.5s ease-in-out;" />
+            <img src="https://github.com/Ferdous015/fumao-images/blob/main/fumao%20bags.png?raw=true" alt="Customized Bags Model B" class="prod-img custom-slide" referrerPolicy="no-referrer" style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity: 0; transition: opacity 0.5s ease-in-out;" />
+            <img src="https://github.com/Ferdous015/fumao-images/blob/main/honda_bag_1691991742%20copy.png?raw=true" alt="Customized Bags Model C" class="prod-img custom-slide" referrerPolicy="no-referrer" style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity: 0; transition: opacity 0.5s ease-in-out;" />
+            
+            <button class="slide-nav-btn prev-btn" onclick="moveCustomSlide(-1); event.preventDefault(); event.stopPropagation();" aria-label="Previous Image">&lsaquo;</button>
+            <button class="slide-nav-btn next-btn" onclick="moveCustomSlide(1); event.preventDefault(); event.stopPropagation();" aria-label="Next Image">&rsaquo;</button>
+            
+            <div class="slide-dots">
+              <span class="slide-dot active-dot" onclick="setCustomSlide(0); event.preventDefault(); event.stopPropagation();"></span>
+              <span class="slide-dot" onclick="setCustomSlide(1); event.preventDefault(); event.stopPropagation();"></span>
+              <span class="slide-dot" onclick="setCustomSlide(2); event.preventDefault(); event.stopPropagation();"></span>
+            </div>
+          </div>
+          <h3>Customized Bags</h3>
+          <p>Tailored sizes, handle alignments, custom polymer thicknesses (GSM selection), and high-fidelity printing tailored precisely to corporate specifications.</p>
+          <a href="#contact" class="btn btn-outline" style="border-color: var(--medium-green); color: var(--primary-dark);">Inquire Bulk</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANUFACTURING PROCESS SECTION -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">The Craft</span>
+        <h2 class="section-title">Precision Manufacturing Flow</h2>
+        <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto;">Our step-by-step production flow integrates intensive modern technology to guarantee chemical compliance and pristine load ratings.</p>
+      </div>
+
+      <div class="timeline-container reveal">
+        <div class="timeline-line"></div>
+        <div class="process-timeline">
+          <!-- Step 1 -->
+          <div class="process-step">
+            <span class="step-num">STEP 01</span>
+            <div class="step-bubble">🔍</div>
+            <h4>Input & Inspection</h4>
+            <p>Evaluating fresh virgin polypropylene pellets to ensure zero thermal weaknesses.</p>
+          </div>
+          <!-- Step 2 -->
+          <div class="process-step">
+            <span class="step-num">STEP 02</span>
+            <div class="step-bubble">⚙️</div>
+            <h4>Fabric Processing</h4>
+            <p>Thermal extrusion and spunbond processing to lay uniform, strong roll fabrics.</p>
+          </div>
+          <!-- Step 3 -->
+          <div class="process-step">
+            <span class="step-num">STEP 03</span>
+            <div class="step-bubble">🎨</div>
+            <h4>Printing & Design</h4>
+            <p>Automated multi-color printing layouts utilizing eco-friendly non-toxic liquid inks.</p>
+          </div>
+          <!-- Step 4 -->
+          <div class="process-step">
+            <span class="step-num">STEP 04</span>
+            <div class="step-bubble">✂️</div>
+            <h4>Slicing & Cutting</h4>
+            <p>Computer-controlled precision slicing lines to completely avoid cutting edge errors.</p>
+          </div>
+          <!-- Step 5 -->
+          <div class="process-step">
+            <span class="step-num">STEP 05</span>
+            <div class="step-bubble">⚡</div>
+            <h4>Ultrasonic Sealing</h4>
+            <p>Thread-free ultrasonic molecular welding to achieve maximum structural joint strength.</p>
+          </div>
+          <!-- Step 6 -->
+          <div class="process-step">
+            <span class="step-num">STEP 06</span>
+            <div class="step-bubble">🧵</div>
+            <h4>Loop Attachment</h4>
+            <p>Fitting comfortable loops with double-point thermal welding for reliable load tests.</p>
+          </div>
+          <!-- Step 7 -->
+          <div class="process-step">
+            <span class="step-num">STEP 07</span>
+            <div class="step-bubble">✅</div>
+            <h4>Tensile Quality test</h4>
+            <p>Simulating practical load spikes on selection samples prior to clearing final logistics.</p>
+          </div>
+          <!-- Step 8 -->
+          <div class="process-step">
+            <span class="step-num">STEP 08</span>
+            <div class="step-bubble">📦</div>
+            <h4>Sort & Package</h4>
+            <p>Tight count wrapping inside dust-proof film shells, preventing logistics friction.</p>
+          </div>
+          <!-- Step 9 -->
+          <div class="process-step">
+            <span class="step-num">STEP 09</span>
+            <div class="step-bubble">🚢</div>
+            <h4>Clean Shipment</h4>
+            <p>Customs documentation clearance for frictionless port handoff to international retail routes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MACHINERY & TECHNOLOGY SECTION -->
+  <section class="machinery" id="machinery">
+    <div class="container">
+      <div class="machinery-grid">
+        <div class="reveal">
+          <span class="section-tag">High Productivity & Consistent Quality</span>
+          <h2 class="section-title">Machinery & Technology</h2>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.75;">
+            FuMao utilizes advanced automated Chinese machinery to ensure world-class consistency, swift lead times, and extreme load bearing structures. Our integrated production plant is fully automated, minimizing processing margins and manual error.
+          </p>
+          
+          <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--dark-bark);">Major Equipment</h3>
+          <ul class="machinery-list">
+            <li class="machinery-item">Non-Woven Fabric Production Line</li>
+            <li class="machinery-item">Automatic Bag Making Machines</li>
+            <li class="machinery-item">Ultrasonic Sealing Machines</li>
+            <li class="machinery-item">Flexographic Printing Machines</li>
+            <li class="machinery-item">Automatic Cutting Machines</li>
+            <li class="machinery-item">Handle Attaching Machines</li>
+            <li class="machinery-item">Quality Testing Equipment</li>
+            <li class="machinery-item">Packaging Systems</li>
+          </ul>
+        </div>
+        
+        <div class="machinery-images reveal" style="transition-delay: 150ms;">
+          <div class="machinery-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="Non-Woven Fabric Production Line" class="machinery-img" referrerPolicy="no-referrer" />
+            <div class="machinery-img-caption">
+              <h4>Fabric Production Line</h4>
+              <p>Continuous thermal extrusion spunbond technology for high tensile roll fabrics.</p>
+            </div>
+          </div>
+          
+          <div class="machinery-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800" alt="Automatic Bag Making Machine" class="machinery-img" referrerPolicy="no-referrer" />
+            <div class="machinery-img-caption">
+              <h4>Bag Making Machinery</h4>
+              <p>Automated ultrasonic molecular welding, precise cutting, and high-frequency folding.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE FUMAO -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag">Quality Assurance</span>
+        <h2 class="section-title">The FuMao Advantage</h2>
+        <p style="color: var(--text-muted);">How we align advanced technology, specialized skills, and global scales to benefit your procurement margins.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div style="font-size: 2rem;">🤖</div>
+          <div>
+            <h3>Advanced Chinese Technology</h3>
+            <p>We deploy high-end imported machineries for precise heat sealing, high-speed graphics printing, and thread-free bonding.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay: 100ms;">
+          <div style="font-size: 2rem;">🌱</div>
+          <div>
+            <h3>100% Sustainable Focus</h3>
+            <p>Pure non-woven textiles are 100% recyclable, presenting highly reusable, clean profiles supporting sustainability targets.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay: 200ms;">
+          <div style="font-size: 2rem;">⚡</div>
+          <div>
+            <h3>High Production Yield</h3>
+            <p>Our daily capacity stands at 6,000 bags a day, guaranteeing timely manufacturing handovers for bulk holiday workloads.</p>
+          </div>
+        </div>
+        <div class="why-card reveal">
+          <div style="font-size: 2rem;">💰</div>
+          <div>
+            <h3>Competitive Wholesale Rates</h3>
+            <p>Optimized directly sourced polymers coupled with efficient regional operational scales keep quality high and acquisition costs minimal.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay: 100ms;">
+          <div style="font-size: 2rem;">🎭</div>
+          <div>
+            <h3>Full Customization Support</h3>
+            <p>We accept bespoke sizing coordinates, custom branding prints, weight density targets (GSM), and specialized finishes.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay: 200ms;">
+          <div style="font-size: 2rem;">👥</div>
+          <div>
+            <h3>Skilled Global Team</h3>
+            <p>An integrated team of 50+ Chinese engineering consultants and Bangladeshi craftsmen providing specialized QA oversight.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS SECTION -->
+  <section class="certifications" id="certifications">
+    <div class="container cert-container">
+      <div class="cert-content reveal">
+        <span class="section-tag">Quality Accreditations</span>
+        <h2 class="section-title">Global Standards & Trust</h2>
+        
+        <div>
+          <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 0.75rem; color: var(--dark-bark); display: flex; align-items: center; gap: 0.50rem;">
+            <span style="font-size: 1.5rem;">🏅</span> 
+            ISO Certification
+          </h3>
+          <p>
+            FuMao Bangladesh Technology Co., Ltd. is committed to maintaining a robust quality management system in line with internationally recognized standards. Our focus on continuous improvement, process efficiency, and customer satisfaction reflects our dedication to delivering reliable, high-quality products to both local and global markets.
+          </p>
+        </div>
+      </div>
+      
+      <div class="cert-badge-wrapper reveal" style="transition-delay: 150ms;">
+        <div class="cert-badge-shadow"></div>
+        <svg class="cert-badge-svg" width="260" height="260" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="gold-radial" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+              <stop offset="0%" stop-color="#FFF9E6" />
+              <stop offset="25%" stop-color="#F1C40F" />
+              <stop offset="70%" stop-color="#D4AF37" />
+              <stop offset="90%" stop-color="#AA7C11" />
+              <stop offset="100%" stop-color="#8A5A00" />
+            </radialGradient>
+            
+            <linearGradient id="gold-linear" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFF3CC" />
+              <stop offset="30%" stop-color="#D4AF37" />
+              <stop offset="50%" stop-color="#F1C40F" />
+              <stop offset="85%" stop-color="#AA7C11" />
+              <stop offset="100%" stop-color="#5B3E00" />
+            </linearGradient>
+
+            <linearGradient id="dark-radial" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1E2822" />
+              <stop offset="100%" stop-color="#070E0A" />
+            </linearGradient>
+          </defs>
+
+          <!-- Outer scalloped luxury edge -->
+          <circle cx="100" cy="100" r="92" fill="url(#gold-radial)" stroke="url(#gold-linear)" stroke-width="2"/>
+          <circle cx="100" cy="100" r="88" stroke="#8A5A00" stroke-width="1.5" stroke-dasharray="4 2" fill="none" opacity="0.65"/>
+          <circle cx="100" cy="100" r="84" stroke="url(#gold-linear)" stroke-width="3" fill="none" />
+
+          <!-- Inner Dark Velvet Ring -->
+          <circle cx="100" cy="100" r="76" fill="url(#dark-radial)" stroke="url(#gold-linear)" stroke-width="3" />
+          <circle cx="100" cy="100" r="68" stroke="url(#gold-linear)" stroke-dasharray="4 4" stroke-width="1" fill="none" opacity="0.8"/>
+
+          <!-- Laurel Leaves Wreath in Gold -->
+          <!-- Left side -->
+          <path d="M 54 110 C 52 95, 60 78, 70 70 C 65 78, 62 95, 61 110" fill="url(#gold-linear)" opacity="0.85"/>
+          <path d="M 58 92 C 50 84, 54 74, 54 74 C 54 74, 62 82, 62 90" fill="url(#gold-linear)" opacity="0.95"/>
+          <path d="M 64 80 C 58 70, 64 60, 64 60 C 64 60, 70 70, 68 78" fill="url(#gold-linear)" opacity="0.95"/>
+          
+          <!-- Right side -->
+          <path d="M 146 110 C 148 95, 140 78, 130 70 C 135 78, 138 95, 139 110" fill="url(#gold-linear)" opacity="0.85"/>
+          <path d="M 142 92 C 150 84, 146 74, 146 74 C 146 74, 138 82, 138 90" fill="url(#gold-linear)" opacity="0.95"/>
+          <path d="M 136 80 C 142 70, 136 60, 136 60 C 136 60, 130 70, 132 78" fill="url(#gold-linear)" opacity="0.95"/>
+
+          <!-- Five Gold Stars bottom curve -->
+          <g fill="url(#gold-linear)">
+            <polygon points="100,147 102,152 107,152 103,155 105,160 100,157 95,160 97,155 93,152 98,152" />
+            <polygon points="85,149 87,153 92,153 88,156 90,161 85,158 80,161 82,156 78,153 83,153" transform="rotate(-10 85 155)"/>
+            <polygon points="70,144 72,148 77,148 73,151 75,156 70,153 65,156 67,151 63,148 68,148" transform="rotate(-20 70 150)"/>
+            <polygon points="115,149 117,153 122,153 118,156 120,161 115,158 110,161 112,156 108,153 113,153" transform="rotate(10 115 155)"/>
+            <polygon points="130,144 132,148 137,148 133,151 135,156 130,153 125,156 127,151 123,148 128,148" transform="rotate(20 130 150)"/>
+          </g>
+
+          <!-- Central Typographic Seals -->
+          <text x="100" y="96" fill="url(#gold-linear)" font-family="'DM Serif Display', serif" font-size="28" font-weight="bold" text-anchor="middle" letter-spacing="0.5">ISO</text>
+          <text x="100" y="121" fill="url(#gold-linear)" font-family="'DM Serif Display', serif" font-size="22" font-weight="900" text-anchor="middle" letter-spacing="1">9001</text>
+          
+          <!-- Banner strap -->
+          <rect x="52" y="128" width="96" height="15" rx="3" fill="url(#gold-linear)"/>
+          <text x="100" y="139" fill="#070E0A" font-family="'Inter', sans-serif" font-size="9" font-weight="800" text-anchor="middle" letter-spacing="2">CERTIFIED</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPORT MARKETS -->
+  <section class="export" id="export">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-tag" style="color: var(--light-green);">Global Logistics Network</span>
+        <h2>Delivering Environmental Impact Worldwide</h2>
+        <p>FuMao proudly services bulk buyers, trading groups, and supermarket distributors across strategic worldwide destinations.</p>
+      </div>
+
+      <div class="countries-grid">
+        <div class="flag-card reveal"><span class="flag-icon">🇺🇸</span><span>United States</span></div>
+        <div class="flag-card reveal" style="transition-delay: 50ms;"><span class="flag-icon">🇨🇦</span><span>Canada</span></div>
+        <div class="flag-card reveal" style="transition-delay: 100ms;"><span class="flag-icon">🇬🇧</span><span>United Kingdom</span></div>
+        <div class="flag-card reveal" style="transition-delay: 150ms;"><span class="flag-icon">🇩🇪</span><span>Germany</span></div>
+        <div class="flag-card reveal" style="transition-delay: 200ms;"><span class="flag-icon">🇫🇷</span><span>France</span></div>
+        <div class="flag-card reveal" style="transition-delay: 250ms;"><span class="flag-icon">🇦🇺</span><span>Australia</span></div>
+        <div class="flag-card reveal" style="transition-delay: 300ms;"><span class="flag-icon">🇸🇦</span><span>Saudi Arabia</span></div>
+        <div class="flag-card reveal" style="transition-delay: 350ms;"><span class="flag-icon">🇦🇪</span><span>UAE</span></div>
+      </div>
+
+      <div class="customer-types reveal">
+        <div class="cust-chip">🛒 Multi-National Retail & Supermarkets</div>
+        <div class="cust-chip">🏢 International Sourcing Groups & Wholesalers</div>
+        <div class="cust-chip">💼 Promotional & Marketing Agencies</div>
+        <div class="cust-chip">🚀 E-Commerce Brands & Distribution Channels</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & CHATBOT -->
+  <section class="contact-chatbot" id="contact">
+    <div class="container contact-grid">
+      <div class="reveal">
+        <span class="section-tag">Direct Lines</span>
+        <h2 class="section-title">Ready to Begin Your Project?</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Get in contact with our sales desk to configure custom print sizes, request free samples, or process immediate logistics volume quotes.</p>
+
+        <div class="contact-info">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <h4>Factory Address</h4>
+              <p>Yearpur, Sorkarbari Moor, Zirabo – 1341, Ashulia, Savar, Dhaka, Bangladesh</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <h4>Mobile Direct</h4>
+              <p><a href="tel:+8801810546666">+880 1810-546666</a></p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <h4>Sales Support Desk</h4>
+              <p><a href="mailto:fumaobdtechltd@gmail.com">fumaobdtechltd@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-content">
+              <h4>Official Website</h4>
+              <p><a href="http://www.fumaobd.com" target="_blank" rel="noopener noreferrer">www.fumaobd.com</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay: 150ms;">
+        <!-- AI Chatbot Widget Card -->
+        <div class="chat-widget">
+          <div class="chat-header">
+            <div class="pulse-dot"></div>
+            <div>
+              <h3>FuMao Sales Assistant</h3>
+              <p>AI Concierge • Responses instantly</p>
+            </div>
+          </div>
+
+          <!-- API Key Activation Block -->
+          <div class="api-overlay" id="api-panel">
+            <p>To ask questions about non-woven fabrics, custom pricing, bulk MOQ, and shipping, activate this consultant using your Gemini API Key.</p>
+            <div class="api-input-container">
+              <input type="password" id="gemini-key-input" class="api-input" placeholder="Enter your Gemini API key..." />
+              <button class="btn btn-primary" id="activate-btn">Activate</button>
+            </div>
+            <p class="api-tips">Your key is processed client-side and directly sent to Google and never stored on any remote servers.</p>
+          </div>
+
+          <!-- Chat logs area -->
+          <div class="chat-body" id="chat-body">
+            <div class="chat-bubble bot">
+              Hello! Welcome to FuMao Bangladesh Technology. I can answer questions about non-woven bags (D-Cut, Loop Handle, Box, Custom design, etc.), bulk orders, customizable printing options, MOQ, and export logistics. How can I help you today?
+            </div>
+            <!-- Typing Indicator -->
+            <div class="typing-indicator" id="typing-indicator">
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+            </div>
+          </div>
+
+          <!-- Input Block -->
+          <div class="chat-input-row" id="chat-input-row">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Type a message (e.g. customized MOQ?)..." disabled />
+            <button class="btn btn-primary" id="send-btn" style="padding: 0.5rem 1.25rem;" disabled>Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-content">
+      <div class="logo" style="margin-bottom: 0.5rem;">
+        <svg width="36" height="36" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));">
+          <!-- Left Face: Dark Forest Green (#00452C) with handle cutout -->
+          <path d="M 24 50
+                   C 24 47 26 46 29 47
+                   L 74 73
+                   C 76 74 77 76 77 78
+                   L 77 131
+                   C 77 134 75 136 72 135
+                   L 64 131
+                   L 64 96
+                   C 64 84 43 84 43 96
+                   L 43 120
+                   L 29 112
+                   C 26 110 24 107 24 104
+                   Z" 
+                fill="#005C3B" />
+
+          <!-- Right/Top Panels: Beautiful Lime Green stripes folding over the ridge -->
+          <!-- Stripe 1 (Middle-left) -->
+          <path d="M 46 32
+                   L 84 54
+                   L 84 116
+                   C 84 119 86 120 88 119
+                   L 97 114
+                   C 99 113 100 111 100 109
+                   L 100 45
+                   L 62 23
+                   C 60 22 57 23 56 25
+                   L 47 30
+                   C 45 31 45 32 46 32 Z"
+                fill="#a1cf31" />
+
+          <!-- Stripe 2 (Middle-right) -->
+          <path d="M 66 21
+                   L 104 43
+                   L 104 105
+                   C 104 108 106 109 108 108
+                   L 117 103
+                   C 119 102 120 100 120 98
+                   L 120 34
+                   L 82 12
+                   C 80 11 77 12 76 14
+                   L 67 19
+                   C 65 20 65 21 66 21 Z"
+                fill="#a1cf31" />
+
+          <!-- Stripe 3 (Far-right) -->
+          <path d="M 86 9
+                   L 124 31
+                   L 124 93
+                   C 124 96 126 97 128 96
+                   L 134 93
+                   C 136 92 137 89 137 87
+                   L 137 22
+                   C 140 19 138 15 135 14
+                   L 102 1
+                   C 99 -1 96 0 95 2
+                   L 87 7
+                   C 85 8 85 9 86 9 Z"
+                fill="#a1cf31" />
+        </svg>
+        <span style="font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--white); margin-left: 0.25rem;">FuMao Bangladesh Technology Co., Ltd.</span>
+      </div>
+      <p style="font-size: 1.05rem; font-style: italic; color: var(--light-green); max-width: 500px; margin-bottom: 0.5rem;">"It starts with a single bag. Let the green revolution begin."</p>
+      <p style="font-size: 0.85rem; max-width: 600px; margin: 0 auto;">ISO 9001 Certified Factory • Yearpur, Sorkarbari Moor, Zirabo – 1341, Ashulia, Savar, Dhaka, Bangladesh</p>
+      
+      <div class="footer-copyright">
+        <p>&copy; 2026 FuMao Bangladesh Technology Co., Ltd. All rights reserved. &bull; <a href="http://www.fumaobd.com" style="color: var(--light-green); text-decoration: underline;" target="_blank">www.fumaobd.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky Header
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile Navigation Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('active');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+      });
+    });
+
+    // Scroll Reveal IntersectionObserver
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.05,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // Chatbot Activation and Operation Logic
+    const apiPanel = document.getElementById('api-panel');
+    const keyInput = document.getElementById('gemini-key-input');
+    const activateBtn = document.getElementById('activate-btn');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatBody = document.getElementById('chat-body');
+    const typingIndicator = document.getElementById('typing-indicator');
+
+    let geminiKey = '';
+    const systemPrompt = `You are a friendly sales assistant for FuMao Bangladesh Technology Co., Ltd. Answer questions about non-woven bags (D-Cut, W-Cut, Box Bags, Loop Handle, Customized, Shopping Bags), bulk orders, customization, MOQ, export logistics, and pricing. Products are made in Ashulia, Dhaka. Contact: +880 1810-546666, fumaobdtechltd@gmail.com. Keep answers to 2-3 sentences. Always encourage contacting FuMao for samples or quotes.`;
+
+    const chatHistory = [
+      {
+        role: "user",
+        parts: [{ text: "Hello! Who are you?" }]
+      },
+      {
+        role: "model",
+        parts: [{ text: "Hello! Welcome to FuMao Bangladesh Technology. I can answer questions about non-woven bags (D-Cut, Loop Handle, Box, Custom design, etc.), bulk orders, customizable printing options, MOQ, and export logistics. How can I help you today?" }]
+      }
+    ];
+
+    activateBtn.addEventListener('click', () => {
+      const enteredKey = keyInput.value.trim();
+      if (!enteredKey) {
+        keyInput.classList.add('shake');
+        setTimeout(() => keyInput.classList.remove('shake'), 400);
+        return;
+      }
+      geminiKey = enteredKey;
+      apiPanel.classList.add('hidden');
+      chatInput.removeAttribute('disabled');
+      sendBtn.removeAttribute('disabled');
+      chatInput.focus();
+    });
+
+    keyInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        activateBtn.click();
+      }
+    });
+
+    async function handleSend() {
+      const prompt = chatInput.value.trim();
+      if (!prompt) return;
+
+      // Add user speech bubble
+      appendMessage(prompt, 'user');
+      chatInput.value = '';
+
+      // Append to memory history
+      chatHistory.push({
+        role: "user",
+        parts: [{ text: prompt }]
+      });
+
+      // Render typing animation
+      typingIndicator.style.display = 'flex';
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: chatHistory,
+            systemInstruction: {
+              parts: [{ text: systemPrompt }]
+            }
+          })
+        });
+
+        typingIndicator.style.display = 'none';
+
+        if (!response.ok) {
+          throw new Error('API request failed');
+        }
+
+        const responseData = await response.json();
+        const responseText = responseData.candidates[0].content.parts[0].text;
+        
+        appendMessage(responseText, 'bot');
+        chatHistory.push({
+          role: "model",
+          parts: [{ text: responseText }]
+        });
+
+      } catch (err) {
+        typingIndicator.style.display = 'none';
+        appendMessage('Oops, there was an issue querying Gemini. Please double check that your API key is correct and valid.', 'error');
+        console.error(err);
+      }
+    }
+
+    function appendMessage(text, sender) {
+      const bubble = document.createElement('div');
+      bubble.className = `chat-bubble ${sender}`;
+      bubble.textContent = text;
+      chatBody.insertBefore(bubble, typingIndicator);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    sendBtn.addEventListener('click', handleSend);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        handleSend();
+      }
+    });
+
+    // Custom Interactive Slideshow for Customized Bags Card
+    let currentCustomSlide = 0;
+    const customSlides = document.querySelectorAll('.custom-slide');
+    const customDots = document.querySelectorAll('.slide-dot');
+
+    window.setCustomSlide = function(index) {
+      if (customSlides.length === 0) return;
+      
+      // Clamp index
+      if (index >= customSlides.length) index = 0;
+      if (index < 0) index = customSlides.length - 1;
+      
+      currentCustomSlide = index;
+      
+      customSlides.forEach((slide, i) => {
+        if (i === currentCustomSlide) {
+          slide.style.opacity = '1';
+          slide.classList.add('active');
+        } else {
+          slide.style.opacity = '0';
+          slide.classList.remove('active');
+        }
+      });
+
+      customDots.forEach((dot, i) => {
+        if (i === currentCustomSlide) {
+          dot.classList.add('active-dot');
+        } else {
+          dot.classList.remove('active-dot');
+        }
+      });
+    };
+
+    window.moveCustomSlide = function(direction) {
+      setCustomSlide(currentCustomSlide + direction);
+    };
+
+    // Auto rotate every 5 seconds
+    let sliderInterval = setInterval(() => {
+      moveCustomSlide(1);
+    }, 5000);
+
+    // Reset auto-rotate on manual interaction
+    const sliderContainer = document.getElementById('custom-slider-container');
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mouseenter', () => {
+        clearInterval(sliderInterval);
+      });
+      sliderContainer.addEventListener('mouseleave', () => {
+        clearInterval(sliderInterval);
+        sliderInterval = setInterval(() => {
+          moveCustomSlide(1);
+        }, 5000);
+      });
+    }
+  </script>
+</body>
+</html>
